@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.gnjoroge.myrestaurants.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/myrest" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +24,7 @@
         android:textColor="@color/colorTextIcons"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:id="@+id/textView" />
+        android:id="@+id/appNameTextView" />
 
     <Button
         android:layout_width="match_parent"
@@ -29,13 +36,6 @@
         android:background="@color/colorTextIcons"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:src="@drawable/myrest"
-        android:scaleType="centerCrop" />
 
     <EditText
         android:id="@+id/locationEditText"
