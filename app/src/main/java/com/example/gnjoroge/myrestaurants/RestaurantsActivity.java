@@ -25,6 +25,10 @@ public class RestaurantsActivity extends AppCompatActivity {
             "Tratorria", "Spur Steak", "Tamambo Restaurant",
             "NyamaMama", "Subway"};
 
+    private String[] cuisines = new String[] {"Breakfast", "Breakfast", "Cakes",
+            "Cakes", "Ice Cream", "Fast Food", "Arabic Food", "Anjera",
+            "Noodle Soups", "Beer", "BBQ", "Cuban", "Bar Food", "Red-Meat Dishes", "Breakfast", "Mexican" };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +36,8 @@ public class RestaurantsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //implementing an arrayAdapter
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
+        //update implemented custom ArrayAdapter
+        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants, cuisines);
         mListView.setAdapter(adapter);
 
         //adding toast

@@ -24,7 +24,10 @@
         android:textColor="@color/colorTextIcons"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:id="@+id/appNameTextView" />
+        android:id="@+id/appNameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp" />
 
     <Button
         android:layout_width="match_parent"
