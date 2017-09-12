@@ -1,4 +1,4 @@
-package com.example.gnjoroge.myrestaurants;
+package com.example.gnjoroge.myrestaurants.ui;
 
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.gnjoroge.myrestaurants.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
