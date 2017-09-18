@@ -1,6 +1,8 @@
 package com.example.gnjoroge.myrestaurants.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.gnjoroge.myrestaurants.Constants;
 import com.example.gnjoroge.myrestaurants.R;
 import com.example.gnjoroge.myrestaurants.adapters.RestaurantListAdapter;
 import com.example.gnjoroge.myrestaurants.services.YelpService;
@@ -25,6 +28,9 @@ import butterknife.ButterKnife;
 import okhttp3.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
+
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
 
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
 
@@ -43,6 +49,13 @@ public class RestaurantsActivity extends AppCompatActivity {
         String location = intent.getStringExtra("location");
 
         getRestaurants(location);
+
+        //testing that shared preferences is saving information
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        if(mRecentAddress != null) {
+            getRestaurants(mRecentAddress);
+        }
     }
 
     private void getRestaurants(String location) {
