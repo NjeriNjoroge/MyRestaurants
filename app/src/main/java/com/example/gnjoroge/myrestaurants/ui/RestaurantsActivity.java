@@ -29,8 +29,8 @@ import okhttp3.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
 
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+    //private SharedPreferences mSharedPreferences;
+    //private String mRecentAddress;
 
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
 
@@ -51,11 +51,11 @@ public class RestaurantsActivity extends AppCompatActivity {
         getRestaurants(location);
 
         //testing that shared preferences is saving information
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        if(mRecentAddress != null) {
-            getRestaurants(mRecentAddress);
-        }
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//        if(mRecentAddress != null) {
+//            getRestaurants(mRecentAddress);
+//        }
     }
 
     private void getRestaurants(String location) {
@@ -70,7 +70,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) {
-                mRestaurants = yelpService.processResults(response);
+                //mRestaurants = yelpService.processResults(response);
 
                 RestaurantsActivity.this.runOnUiThread(new Runnable() {
 
