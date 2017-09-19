@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatabaseReference mSearchedLocationReference;
 
+    private ValueEventListener mSearchedLocationReferenceListener;
+
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION); //pinpoints location node
 
-        mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
+       mSearchedLocationReferenceListener = mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -57,9 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
 
         //mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         //mEditor = mSharedPreferences.edit();
@@ -88,11 +94,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        mSearchedLocationReference.push().setValue(location);
    }
 
-    // method for the add to shared preferences
-//    private void addToSharedPreferences(String location) {
-//        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location)
-//                //to save the information
-//                .apply();
-//    }
+//its an override for the activity not the method. It's defined in the top level of the class
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
+    }
 
 }

@@ -20,7 +20,6 @@ import com.example.gnjoroge.myrestaurants.models.Restaurant;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import okhttp3.Callback;
 import okhttp3.Call;
 import butterknife.Bind;
@@ -54,7 +53,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 //        if(mRecentAddress != null) {
-//            getRestaurants(mRecentAddress);
+//         getRestaurants(mRecentAddress);
 //        }
     }
 
@@ -70,16 +69,19 @@ public class RestaurantsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) {
-                //mRestaurants = yelpService.processResults(response);
+                mRestaurants = yelpService.processResults(response);
 
                 RestaurantsActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
+
                         mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
-                        mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
                                 new LinearLayoutManager(RestaurantsActivity.this);
+
+                        mRecyclerView.setAdapter(mAdapter);
+
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }

@@ -86,17 +86,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             itemView.setOnClickListener(this);
         }
 
-        public void bindRestaurant(Restaurant restaurant) {
-            Picasso.with(mContext)
-                    .load(restaurant.getImageUrl())
-                    .resize(MAX_WIDTH, MAX_HEIGHT)
-                            .centerCrop()
-                    .into(mRestaurantImageView);
-            mNameTextView.setText(restaurant.getName());
-            mCategoryTextView.setText(restaurant.getCategories().get(0));
-            mRatingTextView.setText("Rating: " + restaurant.getRating() + "/5");
-        }
-
         @Override
         public void onClick(View v) {
             Log.d("click listener", "working!");
@@ -105,6 +94,18 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             intent.putExtra("position", itemPosition + "");
             intent.putExtra("restaurants", Parcels.wrap(mRestaurants));
             mContext.startActivity(intent);
+        }
+
+
+        public void bindRestaurant(Restaurant restaurant) {
+            Picasso.with(mContext)
+                    .load(restaurant.getImageUrl())
+                    .resize(MAX_WIDTH, MAX_HEIGHT)
+                    .centerCrop()
+                    .into(mRestaurantImageView);
+            mNameTextView.setText(restaurant.getName());
+            mCategoryTextView.setText(restaurant.getCategories().get(0));
+            mRatingTextView.setText("Rating: " + restaurant.getRating() + "/5");
         }
     }
 }
