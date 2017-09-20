@@ -26,68 +26,28 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private DatabaseReference mSearchedLocationReference;
-
-    private ValueEventListener mSearchedLocationReferenceListener;
-
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
-    @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
     @Bind(R.id.savedRestaurantsButton) Button mSavedRestaurantsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        mSearchedLocationReference = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION); //pinpoints location node
-
-       mSearchedLocationReferenceListener = mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot locationSnapShot : dataSnapshot.getChildren()){
-                    String location = locationSnapShot.getValue().toString();
-                    Log.d("Locations updated", "location: " + location);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-
-
-        //mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //mEditor = mSharedPreferences.edit();
 
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         mAppNameTextView.setTypeface(ostrichFont);
 
         mFindRestaurantsButton.setOnClickListener(this);
-
         mSavedRestaurantsButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mFindRestaurantsButton) {
-            String location = mLocationEditText.getText().toString();
-            saveLocationToFirebase(location);
-//            if(!(location).equals("")) {
-//                addToSharedPreferences(location);
-//            }
-            Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
-            intent.putExtra("location", location);
+
+        if(v == mFindRestaurantsButton) {
+            Intent intent = new Intent(MainActivity.this, RestaurantDetailActivity.class);
             startActivity(intent);
         }
 
@@ -96,16 +56,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
-
-   public void saveLocationToFirebase(String location) {
-       mSearchedLocationReference.push().setValue(location);
-   }
-
-//its an override for the activity not the method. It's defined in the top level of the class
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
-    }
-
 }

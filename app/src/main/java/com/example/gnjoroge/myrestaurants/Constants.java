@@ -16,4 +16,5 @@ public class Constants {
   //  key of the key-value pair in Firebase
     public static final String FIREBASE_CHILD_SEARCHED_LOCATION = "searchedLocation";
     public static final String FIREBASE_CHILD_RESTAURANTS = "restaurants";
+    public static final String PREFERENCES_LOCATION_KEY = "location";
 }

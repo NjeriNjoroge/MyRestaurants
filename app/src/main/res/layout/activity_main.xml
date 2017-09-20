@@ -8,27 +8,23 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/myrest" />
+        android:id="@+id/imageView"
+        android:src="@drawable/myrest"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MyRestaurants"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/colorTextIcons"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:id="@+id/appNameTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp" />
+        android:layout_marginTop="35dp"
+        android:textColor="@color/colorTextIcons"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:id="@+id/appNameTextView"/>
 
     <Button
         android:layout_width="match_parent"
@@ -42,6 +38,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="10dp" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,16 +50,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
-
-    <EditText
-        android:id="@+id/locationEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/findRestaurantsButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
-        android:hint="Enter Zip Code"
-        android:inputType="phone"/>
 
 </RelativeLayout>
